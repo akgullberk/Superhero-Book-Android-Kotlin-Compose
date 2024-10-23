@@ -7,9 +7,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -54,25 +57,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun SuperheroRow(superhero: Superhero){
-    Column(modifier = Modifier
-        .fillMaxWidth()
-        .background(color = MaterialTheme.colorScheme.primaryContainer)
-    ) {
-        Text(text = superhero.name,
-            style = MaterialTheme.typography.displayMedium,
-            modifier = Modifier.padding(2.dp),
-            fontWeight = FontWeight.Bold
-            )
 
-        Text(text = superhero.universe,
-            style = MaterialTheme.typography.displaySmall,
-            modifier = Modifier.padding(2.dp),
-            fontWeight = FontWeight.Normal
-        )
-    }
-}
 
 
 
@@ -80,6 +65,6 @@ fun SuperheroRow(superhero: Superhero){
 @Composable
 fun SuperheroPreview() {
     SuperHeroBookTheme {
-        SuperheroRow(Superhero("Batman","DC",R.drawable.batman))
+
     }
 }
