@@ -4,13 +4,21 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.superherobook.ui.theme.SuperHeroBookTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,10 +30,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             SuperHeroBookTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    Box(modifier = Modifier.padding(innerPadding)){
+
+                    }
                 }
             }
         }
@@ -48,17 +55,31 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun SuperheroRow(superhero: Superhero){
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .background(color = MaterialTheme.colorScheme.primaryContainer)
+    ) {
+        Text(text = superhero.name,
+            style = MaterialTheme.typography.displayMedium,
+            modifier = Modifier.padding(2.dp),
+            fontWeight = FontWeight.Bold
+            )
+
+        Text(text = superhero.universe,
+            style = MaterialTheme.typography.displaySmall,
+            modifier = Modifier.padding(2.dp),
+            fontWeight = FontWeight.Normal
+        )
+    }
 }
+
+
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun SuperheroPreview() {
     SuperHeroBookTheme {
-        Greeting("Android")
+        SuperheroRow(Superhero("Batman","DC",R.drawable.batman))
     }
 }
