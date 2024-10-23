@@ -14,6 +14,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.superherobook.ui.theme.SuperHeroBookTheme
 
 class MainActivity : ComponentActivity() {
+
+    private val superheroList = ArrayList<Superhero>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -27,6 +29,21 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private fun getData(){
+        val superman = Superhero("Superman","DC",R.drawable.superman)
+        val batman = Superhero("Batman","DC",R.drawable.batman)
+        val aquaman = Superhero("Aquaman","DC",R.drawable.aquaman)
+        val ironman = Superhero("Ironman","Marvel",R.drawable.ironman)
+        val deadpool = Superhero("Deadpool","Marvel",R.drawable.deadpool)
+
+        superheroList.add(superman)
+        superheroList.add(batman)
+        superheroList.add(aquaman)
+        superheroList.add(ironman)
+        superheroList.add(deadpool)
+
     }
 }
 
