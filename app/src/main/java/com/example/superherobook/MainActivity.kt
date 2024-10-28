@@ -19,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,10 +29,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.superherobook.ui.theme.SuperHeroBookTheme
+import com.google.gson.Gson
 
 class MainActivity : ComponentActivity() {
 
@@ -58,8 +62,22 @@ class MainActivity : ComponentActivity() {
 
                             }
 
-                            composable("details_screen"){
-                                DetailScreen(superhero = Superhero("Ironman","Marvel", R.drawable.ironman))
+                            composable("details_screen/{superhero}",
+                                arguments = listOf(
+
+                                    navArgument("superhero"){
+                                        type = NavType.StringType
+                                    }
+                                )
+
+
+                            ){
+                                val superheroString = remember {
+                                    it.arguments?.getString("superhero")
+                                }
+
+                                val selectedSuperhero = Gson().fromJson(superheroString,Superhero::class.java)
+                                DetailScreen(superhero = selectedSuperhero)
                             }
 
                         }

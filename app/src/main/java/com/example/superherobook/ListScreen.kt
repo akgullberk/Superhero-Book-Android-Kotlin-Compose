@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.google.gson.Gson
 
 @Composable
 fun SuperheroList(superheros : List<Superhero>, navController: NavController ){
@@ -42,7 +43,7 @@ fun SuperheroRow(superhero: Superhero, navController: NavController){
         .background(color = MaterialTheme.colorScheme.primaryContainer)
         .clickable {
             navController.navigate(
-                "details_screen"
+                "details_screen/${Gson().toJson(superhero)}"
             )
         }
     ) {
