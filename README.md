@@ -14,7 +14,7 @@ SuperHeroBook is an Android application built with Jetpack Compose that displays
 - Composable Layouts: Uses Jetpack Compose for building UI components in a declarative way.
 
 - Navigation: Integrated navigation between screens to handle list and detail views seamlessly.
-- 
+  
 ---------
 
 
