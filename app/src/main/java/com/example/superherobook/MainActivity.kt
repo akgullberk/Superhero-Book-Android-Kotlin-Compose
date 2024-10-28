@@ -28,6 +28,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.superherobook.ui.theme.SuperHeroBookTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,9 +40,25 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+
+            val navController = rememberNavController()
             SuperHeroBookTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Box(modifier = Modifier.padding(innerPadding)){
+
+                        NavHost(
+                            navController = navController,
+                            startDestination = "list_screen"
+
+                        ) {
+
+                            composable("list_screen"){
+                                getData()
+                                SuperheroList(superheros = superheroList)
+
+                            }
+
+                        }
 
                     }
                 }
@@ -82,7 +101,7 @@ fun DetailScreen(superhero : Superhero){
                 contentDescription = superhero.name,
                 modifier = Modifier
                     .padding(16.dp)
-                    .size(300.dp,250.dp)
+                    .size(300.dp, 250.dp)
 
                 )
 
